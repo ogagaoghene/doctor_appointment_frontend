@@ -24,7 +24,7 @@ class SigninForm extends Component {
           <div className="logo-title mt-5 mt-md-5 pt-md-5">
             <h3>Login</h3>
           </div>
-          {/* User Name input*/}
+       
           <div className="form-outline mb-4">
             <input 
               type="text" 
@@ -35,6 +35,7 @@ class SigninForm extends Component {
               required
             />
           </div>
+
           <div className="signup-buttons mt-5 text-center">
             <button type="submit" className="style-btn rounded-pill">Login</button>
           </div>
@@ -43,6 +44,5 @@ class SigninForm extends Component {
     )
   }
 }
-
 
 export default SigninForm;
