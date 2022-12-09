@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
-import SplashScreen from './components/authorization/splash_screen';
-import Signin from './components/authorization/sign_in';
-import { Signup } from './components/authorization/sign_up';
+import SplashScreen from './components/pages/splash_screen';
+import Signin from './components/auth/sign_in';
+import { Signup } from './components/auth/sign_up';
 
 function App() {
   return (
