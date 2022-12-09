@@ -8,7 +8,7 @@ const SplashScreen = () => {
       </div>
       <div className='btn-container'>
         <Link className="h4 btn btn-primary m-3" to="/sign_up_form">Sign up</Link>
-        <Link className="h4 btn btn-secondary m-3" to="/sign_in">Sign in</Link>
+        <Link className="h4 btn btn-secondary m-3" to="/sign_in_form">Sign in</Link>
       </div>
     </div>
   )

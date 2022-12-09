@@ -29,7 +29,7 @@ export const loginAction = (payload) => async (dispatch) => {
   });
 };
 
-const loginReducer = (state = initialState, action) => {
+const LoginReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOG_IN:
       return { ...state }
@@ -44,4 +44,4 @@ const loginReducer = (state = initialState, action) => {
   }
 };
 
-export { login, loginSuccess, logout, loginReducer };
+export { login, loginSuccess, logout, LoginReducer };
