@@ -1,50 +1,56 @@
-import React, {useState} from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { SignUpAction } from '../../redux/signup';
-import { useDispatch } from 'react-redux';
+import {Component} from 'react';
 
-function SignUpForm() {
+class SignUpForm extends Component {
+  constructor(props) {
+    super(props);
 
-  // const [name, setName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate()
+    this.state = {
+      name: "",
+      email: "",
+      password: ""
+    }
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const user = {name, email, password};
-  //   dispatch(SignUpAction(user));
-  //   navigate('/signin')
-  // }
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  
+  handleSubmit(event) {
+    console.log("Form submitted");
+    event.preventDefault();
+  }
 
-  return (
-    <div className="form">
-      <div className="form-body">
-        <div className="form-title">
-          <p className="h3">Create an account</p>
-        </div>
-        <div className="username">
-          <label className="form__label" for="firstName">First Name </label>
-          <input className="form__input" type="text" id="firstName" placeholder="First Name"/>
-        </div>
+  render() {
+    return (
+        <form onubmit={this.handleSubmit}>
+          <input 
+            type="text" 
+            name="name" 
+            placeholder="firstname"
+            value={this.state.name} 
+            required 
+          />
 
-        <div className="email">
-          <label className="form__label" for="email">Email </label>
-          <input  type="email" id="email" className="form__input" placeholder="Email"/>
-        </div>
-
-        <div className="password">
-          <label className="form__label" for="password">Password </label>
-          <input className="form__input" type="password"  id="password" placeholder="Password"/>
-        </div>
-
-        <div className="signup-buttons mt-4 text-center">
-          <button type="submit" className=" btn btn-secondary m-3" to="/signin">SIGN UP</button>
-        </div>
-      </div>
-    </div>
-  );
-};
+            <input 
+              type="text" 
+              name="email" 
+              placeholder="email" 
+              value={this.state.email} 
+              required
+            />
+            <div className="password">
+              <input 
+                type="password" 
+                name="password" 
+                placeholder="firstname" 
+                value={this.state.password} 
+                required 
+              />
+            </div>
+            <div className="signup-buttons mt-4 text-center">
+              <button type="submit" className=" btn btn-secondary m-3" to="/signin">SIGN UP</button>
+            </div>
+         </form>
+    );
+  }
+}
 
 export default SignUpForm;
