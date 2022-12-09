@@ -20,11 +20,11 @@ class SignUpForm extends Component {
 
   render() {
     return (
-      <form onubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit}>
         <div className="form-title">
             <p className="h3">Registration</p>
         </div>
-        
+
         <div className="username">
           <input 
             type="text" 
