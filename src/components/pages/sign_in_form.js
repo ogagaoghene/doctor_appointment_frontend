@@ -9,7 +9,13 @@ class SigninForm extends Component {
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
 
+  handleChange = e => {
+    this.setState({
+      [e.target.name]:[e.target.value]
+    })
   }
 
   handleSubmit(event) {
@@ -31,6 +37,7 @@ class SigninForm extends Component {
               id="firstname"
               placeholder="firstname"
               value={this.state.name} 
+              onChange={this.handleChange}
               className="form-control" 
               required
             />
