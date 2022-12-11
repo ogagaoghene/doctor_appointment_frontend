@@ -5,16 +5,16 @@ class SigninForm extends Component {
     super(props);
 
     this.state = {
-      name: ""
+      name: '',
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange = e => {
+  handleChange = event => {
     this.setState({
-      [e.target.name]:[e.target.value]
+      [event.target.name]:[event.target.value]
     })
   }
 
@@ -36,7 +36,7 @@ class SigninForm extends Component {
               type="text" 
               id="firstname"
               placeholder="firstname"
-              value={this.state.name} 
+              value={this.state.username} 
               onChange={this.handleChange}
               className="form-control" 
               required
@@ -44,7 +44,7 @@ class SigninForm extends Component {
           </div>
 
           <div className="signup-buttons mt-5 text-center">
-            <button type="submit" className="style-btn rounded-pill">Login</button>
+            <button type="submit" >Login</button>
           </div>
         </div>
       </form>
