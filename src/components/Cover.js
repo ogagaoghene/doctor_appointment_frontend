@@ -6,12 +6,12 @@ import Style from '../styles/Signup.module.css';
 
 const Cover = (props) => {
   const user = useSelector((state) => state.user.user);
-  const { history } = props;
-  if (user.username !== 'Guest') {
-    history.push('/doctor');
-  }
+  // const { history } = props;
+  // if (user.name !== 'Guest') {
+  //   history.push('/doctor');
+  // }
   return (
-    <div className={`${Style.container} ${Style.coverBg} home-cover`}>
+    <div className={`${Style.container} ${Style.coverBg}`}>
       <h1 className={Style.setTitle}>BOOK APPOINTMENT WITH A DOCTOR</h1>
       <div className={Style.homeForm}>
         <Link to="/login" className={Style.setLinkBtn}>

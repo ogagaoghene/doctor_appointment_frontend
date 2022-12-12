@@ -73,7 +73,7 @@ const Signup = (props) => {
       
       <form className={Style.signupForm}>
        
-        <input type="text" name="name" id="uname" value={name} onChange={handleChange} placeholder="Enter username" required />
+        <input type="text" name="name" id="name" value={name} onChange={handleChange} placeholder="Enter username" required />
         <input type="email" name="email" id="email" value={email} onChange={handleChange} placeholder="Enter email" required />
         <input type="password" name="password" id="pword" value={password} onChange={handleChange} placeholder="Enter password" required />
         <input type="password" name="password_confirmation" id="cpword" value={password_confirmation} onChange={handleChange} placeholder="Confirm password" required />
