@@ -6,6 +6,7 @@ import url from '../apiUrl/apiLink';
 import { loadAppointments, selectedAppointment } from '../actions/appointmentAction';
 import BookNav from './BookNav';
 import Style from '../styles/DisplayAppoint.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const DisplayAppointments = (props) => {
   const user = useSelector((state) => state.user.user);
@@ -13,6 +14,8 @@ const DisplayAppointments = (props) => {
   const [data, setData] = useState(false);
   const dispatch = useDispatch();
   const { history } = props;
+  const navigate = useNavigate();
+
   const fetchAppointments = () => {
     axios.get(`http://localhost:3001/api/v1/appointments/${user.id}`)
       .then((response) => {
@@ -28,8 +31,10 @@ const DisplayAppointments = (props) => {
     axios.delete(`http://localhost:3001/api/v1/appointments/${id}`)
       .then((response) => {
         if (response.data.status === 'SUCCESS') {
-          history.push('/doctor');
-          history.push('/appointmentDisplay');
+          // history.push('/doctor');
+          // history.push('/appointmentDisplay');
+          navigate('/doctor');
+          // navigate('/appointmentDisplay');
         }
       })
       .catch(() => {
@@ -44,7 +49,8 @@ const DisplayAppointments = (props) => {
         dispatch(selectedAppointment(x));
       }
     });
-    history.push('/edit');
+    // history.push('/edit');
+    navigate('/edit');
   };
 
   const checkStatus = () => {
@@ -87,7 +93,7 @@ const DisplayAppointments = (props) => {
             <div key={data.id} className={Style.itemBox}>
               <div className={`${Style.data} ${Style.docName}`}>{data.doctor_name}</div>
               <div className={`${Style.data} ${Style.dataDate}`}>
-                {new Date(data.appointment_date)
+                {new Date(data.appointment_time)
                   .toLocaleDateString()}
               </div>
               <div className={`${Style.data} ${Style.alignRight} ${Style.alignCol}`}>{data.location}</div>
