@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectedDoctor } from '../actions/doctorAction';
+import { selectDoctors } from '../actions/doctorAction';
 import SideNav from '../components/SideNav';
 import Style from '../styles/DoctorDetails.module.css';
 import url from '../apiUrl/apiLink';
@@ -12,7 +12,7 @@ const DoctorDetails = () => {
   const dispatch = useDispatch();
   const { doctorId } = useParams();
   const fetchDoctorDetail = () => {
-    axios.get(`${url}/doctors/${doctorId}`)
+    axios.get(`http://localhost:3001/api/v1//doctors/${doctorId}`)
       .then((response) => {
         const docDetail = response.data.data;
         dispatch(selectDoctors(docDetail));

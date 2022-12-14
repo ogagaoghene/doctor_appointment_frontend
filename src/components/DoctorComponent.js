@@ -15,7 +15,7 @@ const DoctorComponent = (props) => {
             <img src={doctor.picture} alt={doctor.full_name} data-testid="image" className={Style.img} />
           </div>
           <div className={Style.centerName}>
-            <h3 className={Style.noMargin} data-testid="name">{doctor.full_name}</h3>
+            <h3 className={Style.noMargin} data-testid="name">{doctor.name}</h3>
           </div>
         </Link>
         <div className={Style.setLine}>
