@@ -40,13 +40,14 @@ const DoctorListing = (props) => {
 
   const { history } = props;
   const handleLogout = () => {
-    axios.delete(`${url}/logout`)
+    axios.delete('http://localhost:3001/api/v1/logout')
       .then((response) => {
         if (response.data.logged_out) {
           dispatch(userLogout(response));
           dispatch(resetAppointments());
           localStorage.setItem('user', JSON.stringify({ username: 'Guest' }));
-          history.push('/');
+          // history.push('/');
+          navigate('/')
         }
       })
       .catch((error) => {
@@ -72,7 +73,7 @@ const DoctorListing = (props) => {
           handleLogout={handleLogout}
           handleAppoint={handleAppoint}
         />
-        <div>
+        <div className={Style.doctorDisplay}>
           <div className={Style.setname}>
             <h3>
               {`${user.name}`}

@@ -1,9 +1,11 @@
 .setLogo {
-  width: 8rem;
-  height: 8rem;
+  padding: 10% 0;
+  width: 10rem;
+  height: 10rem;
   position: relative;
   left: 0;
   top: 0;
+  align-self: center;
 }
 
 .img {
@@ -19,6 +21,7 @@
   height: 2rem;
   font-weight: bold;
   width: 100%;
+  cursor: pointer;
 }
 
 .setSocial {
@@ -67,6 +70,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 3rem;
+  
 }
 
 @media (max-width: 576px) {

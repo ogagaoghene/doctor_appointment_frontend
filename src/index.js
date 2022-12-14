@@ -5,6 +5,7 @@ import App from './components/App';
 import store from './reducers/store';
 import './styles/index.css';
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
