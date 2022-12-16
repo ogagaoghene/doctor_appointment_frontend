@@ -11,10 +11,10 @@ const SliderShow = (props) => {
   const renderSlides = () => doctors.map((doctor) => (
     <section className="position" key={doctor.id}>
       <div className="imgSize">
-        <img className="img" src={doctor.picture} alt={doctor.full_name} />
+        <img className="img" src={doctor.picture} alt={doctor.name} />
       </div>
       <div className="centerName">
-        <h3 className="noMargin">{doctor.full_name}</h3>
+        <h3 className="noMargin">{doctor.name}</h3>
       </div>
       <div className="setLine">
         <span>------------------</span>

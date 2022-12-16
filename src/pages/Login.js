@@ -7,31 +7,34 @@ import url from '../apiUrl/apiLink';
 import * as Loader from "react-loader-spinner";
 import { userAccSuccess, userLoginError, userError } from '../actions/userAction';
 import Style from '../styles/Signup.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const Login = (props) => {
   /* eslint-disable camelcase */
   const dispatch = useDispatch();
-  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    if (e.target.name === 'username') {
-      setUsername(e.target.value);
+    if (e.target.name === 'name') {
+      setName(e.target.value);
     } else if (e.target.name === 'password') {
       setPassword(e.target.value);
     }
   };
 
   const { history } = props;
-  const userData = { username, password };
+  const userData = { name, password };
 
   const loginProcess = () => {
-    axios.post(`${url}/login`, userData)
+    axios.post('http://localhost:3001/api/v1/sessions', userData)
       .then((response) => {
         if (response.data.logged_in) {
           localStorage.setItem('user', JSON.stringify(response.data.data));
-          history.push('/doctor');
+          // history.push('/doctor');
+          navigate('/doctor');
           setLoading(false);
           dispatch(userAccSuccess(response.data.data));
         } else {
@@ -52,7 +55,7 @@ const Login = (props) => {
 
   return (
     <div className={Style.container}>
-      <div className={Style.setMessage}>
+      {/* <div className={Style.setMessage}>
         {loading ? (
           <div>
             <Loader
@@ -64,9 +67,9 @@ const Login = (props) => {
             <h3>Processing...</h3>
           </div>
         ) : <div />}
-      </div>
+      </div> */}
       <form className={Style.signupForm}>
-        <input type="text" name="username" id="uname" value={username} onChange={handleChange} placeholder="Enter username" required />
+        <input type="text" name="name" id="uname" value={name} onChange={handleChange} placeholder="Enter username" required />
         <input type="password" name="password" id="pword" value={password} onChange={handleChange} placeholder="Enter password" required />
         <button type="submit" onClick={handleSubmit}>Login</button>
         <div>

@@ -38,9 +38,6 @@ const Signup = (props) => {
   const handleRegister = () => {
     console.log("registered");
     navigate('/login');
-    // const { history } = props;
-    // history.push('/login');
-    setLoading(false);
   };
 
   const userData = {
@@ -73,22 +70,10 @@ const Signup = (props) => {
 
   return (
     <div className={Style.container}>
-      <div className={Style.setMessage}>
-        {loading ? (
-          <div>
-            <Loader
-              type="Circles"
-              color="#00BFFF"
-              height={40}
-              width={40}
-            />
-            <h3>Processing...</h3>
-          </div>
-        ) : <div />}
-      </div>
+      
       <form className={Style.signupForm}>
        
-        <input type="text" name="name" id="uname" value={name} onChange={handleChange} placeholder="Enter username" required />
+        <input type="text" name="name" id="name" value={name} onChange={handleChange} placeholder="Enter username" required />
         <input type="email" name="email" id="email" value={email} onChange={handleChange} placeholder="Enter email" required />
         <input type="password" name="password" id="pword" value={password} onChange={handleChange} placeholder="Enter password" required />
         <input type="password" name="password_confirmation" id="cpword" value={password_confirmation} onChange={handleChange} placeholder="Confirm password" required />

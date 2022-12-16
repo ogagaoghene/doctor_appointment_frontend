@@ -14,7 +14,7 @@ const DisplayAppointments = (props) => {
   const dispatch = useDispatch();
   const { history } = props;
   const fetchAppointments = () => {
-    axios.get(`${url}/appointments/${user.id}`)
+    axios.get(`http://localhost:3001/api/v1/appointments/${user.id}`)
       .then((response) => {
         const appointList = response.data.data;
         dispatch(loadAppointments(appointList));
@@ -25,7 +25,7 @@ const DisplayAppointments = (props) => {
 
   const deleteAppoint = (e) => {
     const { id } = e.target;
-    axios.delete(`${url}/appointments/${id}`)
+    axios.delete(`http://localhost:3001/api/v1/appointments/${id}`)
       .then((response) => {
         if (response.data.status === 'SUCCESS') {
           history.push('/doctor');

@@ -10,15 +10,19 @@ import DoctorFilter from '../components/DoctorFilter';
 import url from '../apiUrl/apiLink';
 import Style from '../styles/DoctorListing.module.css';
 import SliderShow from '../components/SliderShow';
+import { useNavigate } from 'react-router-dom';
 
 const DoctorListing = (props) => {
   const doctors = useSelector((state) => state.allDoctors.doctors);
   const filter = useSelector((state) => state.filter);
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const fetchList = () => {
-    axios.get(`${url}/doctors`)
+    axios.get('http://localhost:3001/api/v1/doctors')
       .then((response) => {
+        // console.log('response = ' , response)
         const docList = response.data.data;
         dispatch(displayDoctors(docList));
       })
@@ -51,7 +55,8 @@ const DoctorListing = (props) => {
   };
 
   const handleAppoint = () => {
-    history.push('/appointmentDisplay');
+    // history.push('/appointmentDisplay');
+    navigate('/appointmentDisplay')
   };
 
   const filteredDoctors = () => {
@@ -68,16 +73,16 @@ const DoctorListing = (props) => {
           handleAppoint={handleAppoint}
         />
         <div>
-          <div className={Style.setUsername}>
+          <div className={Style.setname}>
             <h3>
-              {`${user.username}`}
+              {`${user.name}`}
             </h3>
           </div>
           <div className={Style.textCenter}>
             <h1 className={Style.noMargin}>Choose Experienced Doctor</h1>
             <p className={Style.greyText}>Consultants with many years of experience</p>
           </div>
-          <SliderShow doctors={doctors} />
+          {/* <SliderShow doctors={doctors} /> */}
           <div className={Style.displayDoctors}>
             {filteredDoctors().map((doctor) => (
               <DoctorComponent key={doctor.id} doctor={doctor} />
