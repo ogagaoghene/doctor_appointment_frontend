@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import DoctorDetails from '../containers/DoctorDetails';
-import DoctorListing from '../containers/DoctorListing';
-import Signup from '../containers/Signup';
-import Login from '../containers/Login';
+import DoctorDetails from '../pages/DoctorDetails';
+import DoctorListing from '../pages/DoctorListing';
+import Signup from '../pages/Signup';
+import Login from '../pages/Login';
 import Cover from './Cover';
-import CreateAppointment from '../containers/CreateAppointment';
+import CreateAppointment from '../pages/CreateAppointment';
 import DisplayAppointments from './DisplayAppointments';
 import EditAppointment from './EditAppointment';
 

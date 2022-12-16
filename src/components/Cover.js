@@ -11,7 +11,7 @@ const Cover = (props) => {
     history.push('/doctor');
   }
   return (
-    <div className={`${Style.container} ${Style.coverBg}`}>
+    <div className={`${Style.container} ${Style.coverBg} home-cover`}>
       <h1 className={Style.setTitle}>BOOK APPOINTMENT WITH A DOCTOR</h1>
       <div className={Style.homeForm}>
         <Link to="/login" className={Style.setLinkBtn}>
