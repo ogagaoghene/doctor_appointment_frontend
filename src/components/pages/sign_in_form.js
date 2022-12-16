@@ -9,7 +9,13 @@ class SigninForm extends Component {
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
 
+  handleChange = e => {
+    this.setState({
+      [e.target.name]:[e.target.value]
+    })
   }
 
   handleSubmit(event) {
@@ -19,22 +25,24 @@ class SigninForm extends Component {
 
   render() {
     return (
-      <form  onubmit={this.handleSubmit} className='p-5 d-flex flex-coloumn align-items-center justify-content-center'  method="POST">
+      <form onSubmit={this.handleSubmit} className='p-5 d-flex flex-coloumn align-items-center justify-content-center'  method="POST">
         <div className="form-body p-5">
           <div className="logo-title mt-5 mt-md-5 pt-md-5">
             <h3>Login</h3>
           </div>
-          {/* User Name input*/}
+       
           <div className="form-outline mb-4">
             <input 
               type="text" 
               id="firstname"
               placeholder="firstname"
               value={this.state.name} 
+              onChange={this.handleChange}
               className="form-control" 
               required
             />
           </div>
+
           <div className="signup-buttons mt-5 text-center">
             <button type="submit" className="style-btn rounded-pill">Login</button>
           </div>
@@ -43,6 +51,5 @@ class SigninForm extends Component {
     )
   }
 }
-
 
 export default SigninForm;
