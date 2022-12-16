@@ -22,8 +22,10 @@
 }
 
 .setLogo {
-  width: 8rem;
-  height: 8rem;
+  width: 70%;
+  margin: 10% 0;
+  height: 10rem;
+  align-self: center;
   position: relative;
   left: 0;
   top: 0;

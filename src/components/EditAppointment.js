@@ -8,6 +8,7 @@ import SideNav from './SideNav';
 import 'react-datetime/css/react-datetime.css';
 import url from '../apiUrl/apiLink';
 import Style from '../styles/CreateAppointment.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const EditAppointment = (props) => {
   /* eslint-disable camelcase */
@@ -20,7 +21,8 @@ const EditAppointment = (props) => {
   } = appointment;
   const [dt, setDt] = useState(moment());
   const [location, setLocation] = useState('');
-  const appointment_date = dt;
+  const appointment_time = dt;
+  const navigate = useNavigate();
 
   const LOCATIONS = [
     'Select location',
@@ -38,15 +40,14 @@ const EditAppointment = (props) => {
   };
 
   const handleEdit = () => {
-    const { history } = props;
-    history.push('/appointmentDisplay');
+    navigate('/appointmentDisplay')
   };
 
   const appointmentData = {
-    doctor_id, user_id, appointment_date, location, doctor_name,
+    doctor_id, user_id, appointment_time, location, doctor_name,
   };
   const editAppointment = (id) => {
-    axios.patch(`${url}/appointments/${id}`, appointmentData, { withCredentials: true })
+    axios.patch(`http://localhost:3001/api/v1/appointments/${id}`, appointmentData, { withCredentials: false })
       .then((response) => {
         if (response.data.status === 'SUCCESS') {
           handleEdit();
@@ -70,7 +71,7 @@ const EditAppointment = (props) => {
           <input type="text" name="doctor_name" value={doctor_name} required />
           <DatePicker data-testid="date" value={dt} timeFormat="hh:mm A" showTimeSelect isValidDate={disablePastDt} dateFormat="DD-MM-YYYY" onChange={(val) => setDt(val)} />
           <select name="location" id="select" data-testid="areas" onChange={handleClick}>
-            {LOCATIONS.map((city) => <option value={city} key={city}>{city}</option>)}
+            {LOCATIONS.map((location) => <option value={location} key={location}>{location}</option>)}
           </select>
           <button type="submit" className={Style.createBtn} onClick={handleSubmit}>Submit</button>
         </form>
@@ -79,8 +80,8 @@ const EditAppointment = (props) => {
   );
 };
 
-EditAppointment.propTypes = {
-  history: PropTypes.instanceOf(Object).isRequired,
-};
+// EditAppointment.propTypes = {
+//   history: PropTypes.instanceOf(Object).isRequired,
+// };
 
 export default EditAppointment;
