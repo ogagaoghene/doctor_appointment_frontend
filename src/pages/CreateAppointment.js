@@ -6,7 +6,6 @@ import DatePicker from 'react-datetime';
 import moment from 'moment';
 import SideNav from '../components/SideNav';
 import 'react-datetime/css/react-datetime.css';
-import url from '../apiUrl/apiLink';
 import { bookAppointment } from '../actions/appointmentAction';
 import Style from '../styles/CreateAppointment.module.css';
 import { useNavigate } from 'react-router-dom';

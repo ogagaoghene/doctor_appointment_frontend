@@ -22,7 +22,6 @@ const DoctorListing = (props) => {
   const fetchList = () => {
     axios.get('http://localhost:3001/api/v1/doctors')
       .then((response) => {
-        // console.log('response = ' , response)
         const docList = response.data.data;
         dispatch(displayDoctors(docList));
       })
@@ -46,7 +45,6 @@ const DoctorListing = (props) => {
           dispatch(userLogout(response));
           dispatch(resetAppointments());
           localStorage.setItem('user', JSON.stringify({ username: 'Guest' }));
-          // history.push('/');
           navigate('/')
         }
       })
@@ -56,7 +54,6 @@ const DoctorListing = (props) => {
   };
 
   const handleAppoint = () => {
-    // history.push('/appointmentDisplay');
     navigate('/appointmentDisplay')
   };
 
@@ -83,7 +80,6 @@ const DoctorListing = (props) => {
             <h1 className={Style.noMargin}>Choose Experienced Doctor</h1>
             <p className={Style.greyText}>Consultants with many years of experience</p>
           </div>
-          {/* <SliderShow doctors={doctors} /> */}
           <div className={Style.displayDoctors}>
             {filteredDoctors().map((doctor) => (
               <DoctorComponent key={doctor.id} doctor={doctor} />

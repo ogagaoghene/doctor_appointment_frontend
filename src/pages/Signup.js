@@ -36,7 +36,6 @@ const Signup = (props) => {
   };
 
   const handleRegister = () => {
-    console.log("registered");
     navigate('/login');
   };
 

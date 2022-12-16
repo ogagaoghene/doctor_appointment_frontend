@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import url from '../apiUrl/apiLink';
-import * as Loader from "react-loader-spinner";
 import { userAccSuccess, userLoginError, userError } from '../actions/userAction';
 import Style from '../styles/Signup.module.css';
 import { useNavigate } from 'react-router-dom';
@@ -33,7 +31,6 @@ const Login = (props) => {
       .then((response) => {
         if (response.data.logged_in) {
           localStorage.setItem('user', JSON.stringify(response.data.data));
-          // history.push('/doctor');
           navigate('/doctor');
           setLoading(false);
           dispatch(userAccSuccess(response.data.data));
@@ -55,19 +52,6 @@ const Login = (props) => {
 
   return (
     <div className={Style.container}>
-      {/* <div className={Style.setMessage}>
-        {loading ? (
-          <div>
-            <Loader
-              type="Circles"
-              color="#00BFFF"
-              height={40}
-              width={40}
-            />
-            <h3>Processing...</h3>
-          </div>
-        ) : <div />}
-      </div> */}
       <form className={Style.signupForm}>
         <input type="text" name="name" id="uname" value={name} onChange={handleChange} placeholder="Enter username" required />
         <input type="password" name="password" id="pword" value={password} onChange={handleChange} placeholder="Enter password" required />
