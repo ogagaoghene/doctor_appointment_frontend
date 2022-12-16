@@ -32,7 +32,9 @@
 # 📖 Doctor Appointment Application <a name="about-project"></a>
 
 > A mobile web application that allows for the booking of appointment from a list of available doctors with different specialties. It displays list of available doctors, logged in users can book an appointment, delete and modify appointment bookings.
-### Frontend Repo - [Hello Rails Frontend](https://github.com/ogagaoghene/doctor-appointment-frontend
+
+## Backend Repo 
+- [Doctor Appointment Application](https://github.com/ogagaoghene/doctor_appointment_backend.git
 
 ## Kanban Board
 We have set up a Kanban board
