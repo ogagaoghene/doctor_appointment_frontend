@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import * as Loader from "react-loader-spinner";
-import PropTypes from 'prop-types';
 import axios from 'axios';
-import url from '../apiUrl/apiLink';
 import { userAccSuccess, userAccError } from '../actions/userAction';
 import Style from '../styles/Signup.module.css';
-import { useNavigate } from 'react-router-dom';
 
-const Signup = (props) => {
+const Signup = () => {
   /* eslint-disable camelcase */
   const dispatch = useDispatch();
   const [name, setName] = useState('');
@@ -17,19 +13,18 @@ const Signup = (props) => {
   const [password, setPassword] = useState('');
   const [password_confirmation, setPConfirmation] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     if (e.target.name === 'name') {
       setName(e.target.value);
-    } 
+    }
     if (e.target.name === 'email') {
       setEmail(e.target.value);
-    } 
+    }
     if (e.target.name === 'password') {
       setPassword(e.target.value);
-    } 
+    }
     if (e.target.name === 'password_confirmation') {
       setPConfirmation(e.target.value);
     }
@@ -40,7 +35,7 @@ const Signup = (props) => {
   };
 
   const userData = {
-     name, email, password, password_confirmation,
+    name, email, password, password_confirmation,
   };
 
   const signupProcess = () => {
@@ -58,20 +53,19 @@ const Signup = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setLoading(true);
     signupProcess();
     if (email || password !== '') {
       setErrorMsg('');
     } else {
-      setErrorMsg('Please, enter valid credentials!');
+      setErrorMsg('Invalid credentials!');
     }
   };
 
   return (
     <div className={Style.container}>
-      
+
       <form className={Style.signupForm}>
-       
+
         <input type="text" name="name" id="name" value={name} onChange={handleChange} placeholder="Enter username" required />
         <input type="email" name="email" id="email" value={email} onChange={handleChange} placeholder="Enter email" required />
         <input type="password" name="password" id="pword" value={password} onChange={handleChange} placeholder="Enter password" required />
@@ -86,10 +80,6 @@ const Signup = (props) => {
       </form>
     </div>
   );
-};
-
-Signup.propTypes = {
-  history: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default Signup;

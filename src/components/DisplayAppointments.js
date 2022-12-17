@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
 import axios from 'axios';
-import url from '../apiUrl/apiLink';
+import { useNavigate } from 'react-router-dom';
 import { loadAppointments, selectedAppointment } from '../actions/appointmentAction';
 import BookNav from './BookNav';
 import Style from '../styles/DisplayAppoint.module.css';
-import { useNavigate } from 'react-router-dom';
 
-const DisplayAppointments = (props) => {
+const DisplayAppointments = () => {
   const user = useSelector((state) => state.user.user);
   const appointments = useSelector((state) => state.appointments.appointments);
   const [data, setData] = useState(false);
   const dispatch = useDispatch();
-  const { history } = props;
   const navigate = useNavigate();
 
   const fetchAppointments = () => {
@@ -31,10 +28,7 @@ const DisplayAppointments = (props) => {
     axios.delete(`http://localhost:3001/api/v1/appointments/${id}`)
       .then((response) => {
         if (response.data.status === 'SUCCESS') {
-          // history.push('/doctor');
-          // history.push('/appointmentDisplay');
           navigate('/doctor');
-          // navigate('/appointmentDisplay');
         }
       })
       .catch(() => {
@@ -49,7 +43,6 @@ const DisplayAppointments = (props) => {
         dispatch(selectedAppointment(x));
       }
     });
-    // history.push('/edit');
     navigate('/edit');
   };
 
@@ -63,10 +56,12 @@ const DisplayAppointments = (props) => {
 
   useEffect(() => {
     fetchAppointments();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     checkStatus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appointments]);
 
   return (
@@ -107,10 +102,6 @@ const DisplayAppointments = (props) => {
       </div>
     </section>
   );
-};
-
-DisplayAppointments.propTypes = {
-  history: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default DisplayAppointments;

@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 import DatePicker from 'react-datetime';
 import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
 import SideNav from '../components/SideNav';
 import 'react-datetime/css/react-datetime.css';
 import { bookAppointment } from '../actions/appointmentAction';
 import Style from '../styles/CreateAppointment.module.css';
-import { useNavigate } from 'react-router-dom';
 
-const CreateAppointment = (props) => {
+const CreateAppointment = () => {
   const LOCATIONS = [
     'Select location',
     'Lagos',
@@ -38,8 +37,6 @@ const CreateAppointment = (props) => {
   };
 
   const handleCreation = () => {
-    // const { history } = props;
-    // history.push('/appointmentDisplay');
     navigate('/appointmentDisplay');
   };
 
@@ -47,13 +44,13 @@ const CreateAppointment = (props) => {
     user_id, doctor_id, appointment_time, location, doctor_name,
   };
   const createAppointment = () => {
-    axios.post(`http://localhost:3001/api/v1/appointments`, appointmentData, { withCredentials: false })
+    axios.post('http://localhost:3001/api/v1/appointments', appointmentData, { withCredentials: false })
       .then((response) => {
-        // console.log('hello');
         dispatch(bookAppointment(response));
         handleCreation();
       })
       .catch((error) => {
+        // eslint-disable-next-line
         console.log(error);
       });
   };
@@ -73,18 +70,26 @@ const CreateAppointment = (props) => {
         <form className={Style.formBox}>
           <input type="text" name="doctor_name" value={doctor_name} required />
           <DatePicker data-testid="date" id="data-testid" value={dt} timeFormat="hh:mm A" showTimeSelect isValidDate={disablePastDt} dateFormat="DD-MM-YYYY" onChange={(val) => setDt(val)} />
-          <select name="location" id="select" data-testid="areas" onChange={handleClick}>
-            {LOCATIONS.map((location) => <option value={location} key={location}>{location}</option>)}
+          <select
+            name="location"
+            id="select"
+            data-testid="areas"
+            onChange={handleClick}
+          >
+            {LOCATIONS.map((location) => (
+              <option
+                value={location}
+                key={location}
+              >
+                {location}
+              </option>
+            ))}
           </select>
           <button type="submit" className={Style.createBtn} onClick={handleSubmit}>Create Appointment</button>
         </form>
       </div>
     </section>
   );
-};
-
-CreateAppointment.propTypes = {
-  history: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default CreateAppointment;

@@ -47,6 +47,7 @@ DoctorComponent.propTypes = {
   doctor: PropTypes.shape({
     picture: PropTypes.string,
     full_name: PropTypes.string,
+    name: PropTypes.string,
     specialty: PropTypes.string,
     location: PropTypes.string,
     id: PropTypes.number,

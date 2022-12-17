@@ -1,18 +1,15 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import { displayDoctors, filterDoctors } from '../actions/doctorAction';
 import { resetAppointments } from '../actions/appointmentAction';
 import { userLogout, userError } from '../actions/userAction';
 import DoctorComponent from '../components/DoctorComponent';
 import DoctorFilter from '../components/DoctorFilter';
-import url from '../apiUrl/apiLink';
 import Style from '../styles/DoctorListing.module.css';
-import SliderShow from '../components/SliderShow';
-import { useNavigate } from 'react-router-dom';
 
-const DoctorListing = (props) => {
+const DoctorListing = () => {
   const doctors = useSelector((state) => state.allDoctors.doctors);
   const filter = useSelector((state) => state.filter);
   const user = useSelector((state) => state.user.user);
@@ -31,13 +28,13 @@ const DoctorListing = (props) => {
 
   useEffect(() => {
     fetchList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleFilter = (filter) => {
     dispatch(filterDoctors(filter));
   };
 
-  const { history } = props;
   const handleLogout = () => {
     axios.delete('http://localhost:3001/api/v1/logout')
       .then((response) => {
@@ -45,7 +42,7 @@ const DoctorListing = (props) => {
           dispatch(userLogout(response));
           dispatch(resetAppointments());
           localStorage.setItem('user', JSON.stringify({ username: 'Guest' }));
-          navigate('/')
+          navigate('/');
         }
       })
       .catch((error) => {
@@ -54,7 +51,7 @@ const DoctorListing = (props) => {
   };
 
   const handleAppoint = () => {
-    navigate('/appointmentDisplay')
+    navigate('/appointmentDisplay');
   };
 
   const filteredDoctors = () => {
@@ -89,10 +86,6 @@ const DoctorListing = (props) => {
       </div>
     </>
   );
-};
-
-DoctorListing.propTypes = {
-  history: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default DoctorListing;

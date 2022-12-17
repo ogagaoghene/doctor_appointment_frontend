@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 import { userAccSuccess, userLoginError, userError } from '../actions/userAction';
 import Style from '../styles/Signup.module.css';
-import { useNavigate } from 'react-router-dom';
 
-const Login = (props) => {
+const Login = () => {
   /* eslint-disable camelcase */
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -23,7 +20,6 @@ const Login = (props) => {
     }
   };
 
-  const { history } = props;
   const userData = { name, password };
 
   const loginProcess = () => {
@@ -32,7 +28,6 @@ const Login = (props) => {
         if (response.data.logged_in) {
           localStorage.setItem('user', JSON.stringify(response.data.data));
           navigate('/doctor');
-          setLoading(false);
           dispatch(userAccSuccess(response.data.data));
         } else {
           dispatch(userLoginError());
@@ -40,13 +35,12 @@ const Login = (props) => {
       })
       .catch((error) => {
         dispatch(userError(error));
-        history.push('/login');
+        navigate('/login');
       });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setLoading(true);
     loginProcess();
   };
 
@@ -63,10 +57,6 @@ const Login = (props) => {
       </form>
     </div>
   );
-};
-
-Login.propTypes = {
-  history: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default Login;

@@ -23,6 +23,7 @@ const DoctorDetails = () => {
     if (doctorId && doctorId !== '') {
       fetchDoctorDetail();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [doctorId]);
 
   return (

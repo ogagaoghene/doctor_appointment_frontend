@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 import moment from 'moment';
 import DatePicker from 'react-datetime';
+import { useNavigate } from 'react-router-dom';
 import SideNav from './SideNav';
 import 'react-datetime/css/react-datetime.css';
-import url from '../apiUrl/apiLink';
 import Style from '../styles/CreateAppointment.module.css';
-import { useNavigate } from 'react-router-dom';
 
-const EditAppointment = (props) => {
+const EditAppointment = () => {
   /* eslint-disable camelcase */
   const appointment = useSelector((state) => state.appointments.appointment);
   const {
@@ -40,7 +38,7 @@ const EditAppointment = (props) => {
   };
 
   const handleEdit = () => {
-    navigate('/appointmentDisplay')
+    navigate('/appointmentDisplay');
   };
 
   const appointmentData = {
@@ -69,19 +67,43 @@ const EditAppointment = (props) => {
       <div className={Style.formContainer}>
         <form className={Style.formBox}>
           <input type="text" name="doctor_name" value={doctor_name} required />
-          <DatePicker data-testid="date" value={dt} timeFormat="hh:mm A" showTimeSelect isValidDate={disablePastDt} dateFormat="DD-MM-YYYY" onChange={(val) => setDt(val)} />
-          <select name="location" id="select" data-testid="areas" onChange={handleClick}>
-            {LOCATIONS.map((location) => <option value={location} key={location}>{location}</option>)}
+          <DatePicker
+            data-testid="date"
+            value={dt}
+            timeFormat="hh:mm A"
+            showTimeSelect
+            isValidDate={disablePastDt}
+            dateFormat="DD-MM-YYYY"
+            onChange={(val) => setDt(val)}
+          />
+          <select
+            name="location"
+            id="select"
+            data-testid="areas"
+            onChange={handleClick}
+          >
+            {LOCATIONS.map((location) => (
+              <option
+                value={location}
+                key={location}
+              >
+                {
+              location
+}
+              </option>
+            ))}
           </select>
-          <button type="submit" className={Style.createBtn} onClick={handleSubmit}>Submit</button>
+          <button
+            type="submit"
+            className={Style.createBtn}
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
         </form>
       </div>
     </section>
   );
 };
-
-// EditAppointment.propTypes = {
-//   history: PropTypes.instanceOf(Object).isRequired,
-// };
 
 export default EditAppointment;
